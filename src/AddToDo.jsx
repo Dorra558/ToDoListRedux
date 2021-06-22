@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {useSelector,useDispatch} from "react-redux"
-import {addTodos,deleteTodo,removeTodo} from "./action"
+import { addTodos, deleteTodo, removeTodo } from "./action"
+import './App.css'
 
 
 function AddToDo() {
@@ -16,23 +17,23 @@ function AddToDo() {
     console.log(todo)
     return (
         <div>
-            <form>
-                <input type="text" value={todo} placeholder="add to list" onChange={(e)=>setTodo(e.target.value)} />
-                <button onClick={savedItems}>Add</button>
+            <form className="formu">
+                <h1>Add to list</h1>
+                <input className="inputBox" type="text" value={todo} placeholder="Add new item" onChange={(e)=>setTodo(e.target.value)} />
+                <button className="AddBtn" onClick={savedItems}>Add</button>
             </form>
             {items.map((elem) => (
             <div className="eachItem" key={elem.id}>
-                <li>{elem.data}</li>
-                <button onClick={()=>dispatch(deleteTodo(elem.id))}>Delete</button>
+                <li>{elem.data}
+                <button className="DelBtn" onClick={()=>dispatch(deleteTodo(elem.id))}> Delete </button></li>
             </div>
             ))}
 
             <div>
-              <button onClick={()=>dispatch(removeTodo())}>Remove All</button>
+              <button className="RemBtn" onClick={()=>dispatch(removeTodo())}>Remove All</button>
             </div>
 
         </div>
     )
 }
-
 export default AddToDo
